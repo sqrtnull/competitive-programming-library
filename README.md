@@ -1,1 +1,2 @@
-# competitive-programming-library
+# library
+

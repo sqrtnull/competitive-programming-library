@@ -32,12 +32,15 @@ struct matrix
         while(k) { if(k&1) r*=t; t*=t; k>>=1; }
         return r;
     }
-    void swap_rows(int a, int b) {
-        std::swap(data[a],data[b]);
+    matrix transpose() const {
+        matrix t(m,n);
+        for(int i=0;i<n;++i) for(int j=0;j<m;++j) {
+            t.data[j][i]=data[i][j];
+        }
     }
-    void multiply_row(int i, T v) {
-        for(T& a:data[i]) a*=v;
-    }
+
+    void swap_rows(int a, int b) { std::swap(data[a],data[b]); }
+    void multiply_row(int i, T v) { for(T& a:data[i]) a*=v; }
     void add_multiple_to_row(int i, int j, T v) {
         for(int k=0;k<m;++k) data[i][k]+=data[j][k]*v;
     }
@@ -45,13 +48,11 @@ struct matrix
         int i=0,j=0;
         while(i<n && j<m) {
             int pivot = i;
-            {
-                T max = data[i][j];
-                for(int x=i+1;x<n;++x) {
-                    if(max<data[x][j]) {
-                        pivot=x;
-                        max=data[x][j];
-                    }
+            T max = data[i][j];
+            for(int x=i+1;x<n;++x) {
+                if(max<data[x][j]) {
+                    pivot=x;
+                    max=data[x][j];
                 }
             }
             if(data[pivot][j]==0) {

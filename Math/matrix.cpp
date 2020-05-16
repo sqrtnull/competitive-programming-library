@@ -1,7 +1,8 @@
+using lnt = long long;
 /* <matrix> */
 
-template <typename T = int>
-struct matrix
+template <typename T = lnt>
+struct matrix // designed for int and modint(not yet validated)
 {
     const int n,m;
     std::vector<std::vector<T> > data;
@@ -25,27 +26,37 @@ struct matrix
     matrix operator-(const matrix& a) const { return matrix(*this) -= a; }
     matrix operator*(const matrix& a) const { return matrix(*this) *= a; }
     bool operator==(const matrix& a) const { return data==a.data; }
-    matrix pow(int k) const {
-        assert(n==m);
-        matrix r(n,n), t(*this);
-        for(int i=0;i<n;++i) r.data[i][i]=1;
-        while(k) { if(k&1) r*=t; t*=t; k>>=1; }
-        return r;
-    }
     matrix transpose() const {
         matrix t(m,n);
         for(int i=0;i<n;++i) for(int j=0;j<m;++j) {
             t.data[j][i]=data[i][j];
         }
     }
-
+    // square matrix
+    matrix pow(int k) const {
+        assert(n==m);
+        matrix r(n,n), t(*this);
+        for(int i=0;i<n;++i) { r.data[i][i]=1; }
+        while(k) { if(k&1) r*=t; t*=t; k>>=1; }
+        return r;
+    }
+    matrix det() const {
+        assert(n==m);
+        matrix A(*this);
+        T d = A.GaussianElimination();
+        T o = 1;
+        for(int i=0;i<n;++i) { o*=A.data[i][i]; }
+        o/=d;
+        return o;
+    }
+    // in-place
     void swap_rows(int a, int b) { std::swap(data[a],data[b]); }
     void multiply_row(int i, T v) { for(T& a:data[i]) a*=v; }
     void add_multiple_to_row(int i, int j, T v) {
         for(int k=0;k<m;++k) data[i][k]+=data[j][k]*v;
     }
-    void GaussianElimination() {
-        int i=0,j=0;
+    T GaussianElimination() {
+        int i=0,j=0;T d=1;
         while(i<n && j<m) {
             int pivot = i;
             T max = data[i][j];
@@ -58,9 +69,11 @@ struct matrix
             if(data[pivot][j]==0) {
                 ++j;
             } else {
+                if(i!=pivot) d*=-1;
                 swap_rows(i, pivot);
                 for(int x=i+1;x<n;++x) {
                     T o = data[x][j];
+                    d*=data[i][j];
                     multiply_row(x,data[i][j]);
                     add_multiple_to_row(x,i,-o);
                 }

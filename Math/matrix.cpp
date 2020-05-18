@@ -80,6 +80,7 @@ struct matrix // designed for int and modint(not yet validated)
                 ++i; ++j;
             }
         }
+		return d;
     }
 };
 template <typename T>

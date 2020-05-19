@@ -16,16 +16,14 @@ struct SWAG
     }
     void pop() {
         assert(!empty());
-        if(!f.empty()) {
-            f.pop(); fa.pop();
-        } else {
+        if(f.empty()) {
             while(!b.empty()) {
                 f.emplace(b.top()); b.pop(); ba.pop();
                 if(fa.empty()) fa.emplace(f.top());
                 else fa.emplace(g(f.top(), fa.top()));
             }
-            f.pop(); fa.pop();
         }
+        f.pop(); fa.pop();
     }
     T fold_all() const {
         assert(!empty());

@@ -8,7 +8,7 @@ struct SWAG
     const std::function<T(T,T)> g;
     SWAG(std::function<T(T,T)> g)
         : g(g) {}
-    void push(int a) {
+    void push(T a) {
         b.emplace(a);
         if(ba.empty()) ba.emplace(a);
         else ba.emplace(g(ba.top(),a));
@@ -25,7 +25,7 @@ struct SWAG
             f.pop(); fa.pop();
         }
     }
-    T fold_all() {
+    T fold_all() const {
         if(fa.empty()) return ba.top();
         if(ba.empty()) return fa.top();
         return g(fa.top(),ba.top());

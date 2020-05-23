@@ -15,6 +15,7 @@
 #include <cstdio>
 #include <cmath>
 #include <cassert>
+#include <random>
 
 #ifdef DEBUG
 #include "library/Utility/debug.cpp"

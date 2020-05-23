@@ -11,11 +11,9 @@ struct RollingHash
 	ulnt base;
 	std::vector<ulnt> basepow;
 	RollingHash() : basepow(MAXLENGTH) {
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<ulnt> dis(2,RollingHash::MOD-2);
-		base = dis(gen);
-		basepow[0]=1;
+		std::random_device rd; std::mt19937 gen(rd());
+		std::uniform_int_distribution<ulnt> dis(2,MOD-2);
+		base = dis(gen); basepow[0]=1;
 		for(int i=1;i<MAXLENGTH;i++) {
 			basepow[i]=mod(modmul(basepow[i-1],base));
 		}
@@ -37,8 +35,7 @@ struct RollingHash
 		return ad*bd + ((au*bu)<<1) + (midd<<31) + midu;
 	}
 	static ulnt mod(ulnt a) {
-		ulnt x,xu,xd;
-		xu=a>>61; xd=a&MOD; x=xu+xd;
+		ulnt x,xu,xd; xu=a>>61; xd=a&MOD; x=xu+xd;
 		if(x>=MOD) x-=MOD;
 		return x;
 	}

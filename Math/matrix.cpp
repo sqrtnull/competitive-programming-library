@@ -31,6 +31,7 @@ struct matrix // designed for int and modint(not yet validated)
         for(int i=0;i<n;++i) for(int j=0;j<m;++j) {
             t.data[j][i]=data[i][j];
         }
+        return t;
     }
     // square matrix
     matrix pow(int k) const {

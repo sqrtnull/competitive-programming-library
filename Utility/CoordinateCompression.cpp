@@ -4,16 +4,15 @@ using lnt = long long;
 template <typename T = lnt>
 struct CoordinateCompression
 {
-	std::vector<T> data;
-	CoordinateCompression(const std::vector<T>& coords, bool sorted=false) : data(coords) {
-		if(!sorted) std::sort(data.begin(),data.end());
-		data.erase(std::unique(data.begin(),data.end()),data.end());
+	// add with .r.emplace_back(), T->int with [], int-> T with .r[]
+	std::vector<T> r;
+	CoordinateCompression() {}
+	void build(bool sorted=false) {
+		if(!sorted) std::sort(r.begin(),r.end());
+		r.erase(std::unique(r.begin(),r.end()),r.end());
 	}
-	int enc(T x) const {
-		return (int)(std::lower_bound(data.begin(),data.end(),x)-data.begin());
-	}
-	T dec(int x) const {
-		return data[x];
+	int operator[](const T& k) const {
+		return (int)(std::lower_bound(r.begin(),r.end(),k)-r.begin());
 	}
 };
 

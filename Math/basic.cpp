@@ -19,8 +19,8 @@ lnt ipow(lnt v,lnt k) { lnt r(1),t(v); while(k){ if(k&1) r*=t; t*=t; k>>=1; } re
 /* <pow> */
 /* <prime_factorize> */
 
-void prime_factorize(lnt n, std::map<int,int>& prime_factors) {
-    for(int i=2;i*i<=n;i++) {
+void prime_factorize(lnt n, std::map<lnt,lnt>& prime_factors) {
+    for(lnt i=2;i*i<=n;i++) {
         while(n%i==0) {
             prime_factors[i]++;
             n/=i;

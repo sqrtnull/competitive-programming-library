@@ -25,10 +25,14 @@ struct SegmentTree
 template<typename T=lnt>
 struct Template
 {
-	T v;
-	static Template I() { return Template(0); }
-	Template(T v) : v(v) {}
-	static Template f(const Template& lhs, const Template& rhs) { return lhs+rhs; }
+	T v; bool alive;
+	static Template I() { return Template(); }
+	Template() : alive(false) {}
+	Template(T v) : v(v),alive(true) {}
+	static Template f(const Template& lhs, const Template& rhs) {
+		if(lhs.alive&&rhs.alive) return Template(lhs.v+rhs.v);
+		return (lhs.alive)?lhs:rhs;
+	}
 	operator T() const { return v; }
 };
 /* <SegmentTree::Template> */

@@ -1,3 +1,4 @@
+using lnt=long long;
 /* <SegmentTree> */
 
 template<typename M>

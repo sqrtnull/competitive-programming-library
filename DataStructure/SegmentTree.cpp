@@ -7,11 +7,11 @@ struct SegmentTree
 	const int n;
 	std::vector<M> data;
 	SegmentTree(int n) : n(n),data(n<<1,M::I()) {}
-	M& operator[](int i) { return data[i+n]; }
+	M& operator[](int i) { return data[i+n]; } // pair with update/build
 	void update(int i) { for(i+=n;i>1;i>>=1) data[i>>1]=M::f(data[i],data[i^1]); }
 	void build() { for(int i=n-1;i>0;i--) data[i]=M::f(data[i<<1],data[i<<1|1]); }
-	M query(int l, int r) const {
-		M L=M::I(), R=M::I();
+	M fold(int l, int r) const {
+		M L=M::I(),R=M::I();
 		for(l+=n,r+=n;l<r;l>>=1,r>>=1) {
 			if(l&1) L=M::f(data[l++],L);
 			if(r&1) R=M::f(R,data[--r]);

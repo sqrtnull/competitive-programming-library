@@ -1,2 +1,3 @@
 # library
-renamed competitive-programming-library to cp-library as it was too long
+planning to put explanations below (English and Japanese)
+https://sqrtnull.github.io/cp-library/

@@ -1,4 +1,5 @@
 /* <rSegmentTree> */
+// deprecated
 
 template <typename G>
 struct rSegmentTree

@@ -56,3 +56,47 @@ struct RangeAffineRangeSum
 	};
 };
 /* <LazySegmentTree::RangeAffineRangeSum> */
+
+/* <LazySegmentTree::RangeAffineRangeMinMax> */
+// untested
+template<typename T=lnt>
+struct RangeAffineRangeMinMax
+{
+	struct M
+	{
+		struct V
+		{
+			T v; int i;
+			operator T() const { return v; } 
+			V(T v, int i=-1) : v(v),i(i) {}
+		};
+		V min, max;
+		static M I() { return M(std::numeric_limits<T>::max(),std::numeric_limits<T>::min()); }
+		M(T v, int i=-1) : min(v,i),max(v,i) {}
+		M(V min,V max) : min(min),max(max) {}
+		static M f(const M& lhs, const M& rhs) {
+			return M((lhs.min.v<rhs.min.v)?lhs.min:rhs.min, (rhs.max.v<lhs.max.v)?lhs.max:rhs.max);
+		}
+	};
+
+	struct OM
+	{
+		T a, b; bool alive;
+		static OM I() { return OM(); }
+		OM() : alive(false) {}
+		OM(T a, T b) : a(a),b(b),alive(true) {}
+		static M g(M m, const OM& om) {
+			if(om.alive) {
+				if(om.a<0) std::swap(m.min,m.max);
+				m.min.v*=om.a; m.min.v+=om.b;
+				m.max.v*=om.a; m.max.v+=om.b;
+				return m;
+			} else return m;
+		}
+		static OM h(const OM& first, const OM& second) {
+			if(first.alive&&second.alive) return OM(first.a*second.a, first.b*second.a+second.b);
+			return (first.alive)?first:second;
+		}
+	};
+};
+/* <LazySegmentTree::RangeAffineRangeMinMax> */

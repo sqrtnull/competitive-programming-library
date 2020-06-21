@@ -2,7 +2,9 @@
  
 pattern="/* <$1> */"
 
-filename=( $(grep -n -r -F "$pattern" library| awk '{split($0,a,":");print a[1]}') )
+lib_path="library"
+
+filename=( $(grep -n -r -F "$pattern" $lib_path | awk '{split($0,a,":");print a[1]}') )
 
 if [ -z "$filename" ]
 then
@@ -16,8 +18,8 @@ nums=( $(grep -n -F "$pattern" "${filename[0]}" | awk '{split($0,a,":");print a[
 
 n=( $(grep -n -F "/*-*/" main.cpp | awk '{split($0,a,":");print a[1]}') )
 
-cat main.cpp > .tmp
+cat main.cpp > .lib_tmp
 
-head -$n .tmp > main.cpp
+head -$n .lib_tmp > main.cpp
 head -$((${nums[1]} - 1)) "${filename[0]}" | tail -n +$((${nums[0]} + 1)) >> main.cpp
-tail -n +$(($n + 1)) .tmp >> main.cpp
+tail -n +$(($n + 1)) .lib_tmp >> main.cpp

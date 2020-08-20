@@ -7,8 +7,8 @@ struct LazySegmentTree
 	int n,h;
 	std::vector<M> data; std::vector<OM> lazy;
 	LazySegmentTree(int N) : n(1),h(0) { while(n<N) n<<=1,h++; data.assign(n<<1,M::I()); lazy.assign(n,OM::I()); }
-	M& operator[](int i) { return data[i+n]; } // unsafe. use only with build
-	void build() { for(int i=n-1;i>0;i--) data[i]=M::f(data[i<<1],data[i<<1|1]); }
+	M& operator[](int i) { return data[i+n]; } // unsafe. use only with build()
+	void build() { for(int i=n-1;i>0;i--) data[i]=M::f(data[i<<1],data[i<<1|1]); } // build() even when all I
 	void apply(int i, const OM& o) { if(i<n) lazy[i]=OM::h(lazy[i],o); data[i]=OM::g(data[i],o); }
 	void propagate(int i) { if(lazy[i].alive) { apply(i<<1,lazy[i]); apply(i<<1|1,lazy[i]); lazy[i]=OM::I(); } }
 	void thrust(int i) { for(int j=h;j>0;j--) propagate(i>>j); }
@@ -20,8 +20,7 @@ struct LazySegmentTree
 	}
 	M fold(int l, int r) {
 		l+=n;r+=n; int l0=l/(l&-l),r0=r/(r&-r); thrust(l0); thrust(r0-1); recalc(l0); recalc(r0-1);
-		M L=M::I(),R=M::I();
-		for(;l<r;l>>=1,r>>=1) { if(l&1) L=M::f(L,data[l++]); if(r&1) R=M::f(data[--r],R); }
+		M L=M::I(),R=M::I(); for(;l<r;l>>=1,r>>=1) { if(l&1) L=M::f(L,data[l++]); if(r&1) R=M::f(data[--r],R); }
 		return M::f(L,R);
 	}
 	M get(int i) { return fold(i,i+1); }

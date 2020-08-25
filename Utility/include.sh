@@ -2,7 +2,7 @@
  
 pattern="/* <$1> */"
 
-lib_path="library"
+lib_path="cp-library"
 
 filename=( $(grep -n -r -F "$pattern" $lib_path | awk '{split($0,a,":");print a[1]}') )
 

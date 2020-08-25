@@ -13,11 +13,11 @@ cd cpp
 ```
 git clone https://github.com/sqrtnull/cp-library.git
 ```
-3. copy `Utility/include.sh` to working folder and change `lib_path` accordingly
+3. Copy `Utility/include.sh` to working folder and change `lib_path` accordingly
 ```
 cp cp-library/Utility/include.sh include.sh
 ```
-4. copy `Utility/template.cpp` to working folder as `main.cpp`
+4. Copy `Utility/template.cpp` to working folder as `main.cpp`
 ```
 cp cp-library/Utility/template.cpp main.cpp
 ```

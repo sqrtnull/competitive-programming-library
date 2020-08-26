@@ -8,7 +8,7 @@ struct SWAG
 	const std::function<T(T,T)> g;
 	SWAG(std::function<T(T,T)> g)
 		: g(g) {}
-	bool empty() const { return f.empty()&&b.empty() }
+	bool empty() const { return f.empty()&&b.empty(); }
 	void push(T a) {
 		b.emplace(a);
 		if(ba.empty()) ba.emplace(a);

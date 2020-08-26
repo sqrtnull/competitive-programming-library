@@ -2,7 +2,7 @@
 layout: post
 title: Weighted Union-Find
 author: sqrtnull
-date: 2020-08-25
+date: 2020-08-26
 category: Data Structures
 ---
 
@@ -23,6 +23,7 @@ category: Data Structures
 
 ```cpp
 WeightedUnionFind uf(10);
+uf.unite(0,9,1);
 uf.unite(1,2,1);
 uf.unite(1,3,5);
 uf.unite(4,2,-4);

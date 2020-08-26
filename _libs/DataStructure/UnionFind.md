@@ -2,7 +2,7 @@
 layout: post
 title: Union-Find
 author: sqrtnull
-date: 2020-08-25
+date: 2020-08-26
 category: Data Structures
 ---
 

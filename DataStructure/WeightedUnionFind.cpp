@@ -31,6 +31,7 @@ struct WeightedUnionFind
 		return 0;
 	}
 	lnt diff(int i, int j) {
+		find(i); find(j);
 		return weight[j]-weight[i];
 	}
 	bool same(int i, int j) {

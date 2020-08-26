@@ -45,7 +45,9 @@ struct RangeSum
 	T v;
 	static RangeSum I() { return RangeSum(0); }
 	RangeSum(T v) : v(v) {}
-	static RangeSum f(const RangeSum& lhs, const RangeSum& rhs) { return lhs+rhs; }
+	static RangeSum f(const RangeSum& lhs, const RangeSum& rhs) {
+		return lhs+rhs;
+	}
 	operator T() const { return v; }
 };
 /* <SegmentTree::RangeSum> */
@@ -57,7 +59,9 @@ struct RangeMin
 	T v;
 	static RangeMin I() { return RangeMin(std::numeric_limits<T>::max()); }
 	RangeMin(T v) : v(v) {}
-	static RangeMin f(const RangeMin& lhs, const RangeMin& rhs) { return std::min(lhs,rhs); }
+	static RangeMin f(const RangeMin& lhs, const RangeMin& rhs) {
+		return std::min(lhs,rhs);
+	}
 	operator T() const { return v; }
 };
 /* <SegmentTree::RangeMin> */
@@ -69,7 +73,9 @@ struct RangeMax
 	T v;
 	static RangeMax I() { return RangeMax(std::numeric_limits<T>::min()); }
 	RangeMax(T v) : v(v) {}
-	static RangeMax f(const RangeMax& lhs, const RangeMax& rhs) { return std::max(lhs,rhs); }
+	static RangeMax f(const RangeMax& lhs, const RangeMax& rhs) {
+		return std::max(lhs,rhs);
+	}
 	operator T() const { return v; }
 };
 /* <SegmentTree::RangeMax> */
@@ -79,9 +85,11 @@ template<typename T=lnt>
 struct RangeMinIndex
 {
 	T v; int i;
-	static RangeMinIndex I() { return RangeMinIndex(std::numeric_limits<T>::max(),-1); }
-	RangeMinIndex(T v, int i) : v(v),i(i) {}
-	static RangeMinIndex f(const RangeMinIndex& lhs, const RangeMinIndex& rhs) { if(lhs.v<rhs.v) return lhs; else return rhs; }
+	static RangeMinIndex I() { return RangeMinIndex(std::numeric_limits<T>::max()); }
+	RangeMinIndex(T v, int i=-1) : v(v),i(i) {}
+	static RangeMinIndex f(const RangeMinIndex& lhs, const RangeMinIndex& rhs) {
+		if(lhs.v<rhs.v) return lhs; else return rhs;
+	}
 	operator T() const { return v; }
 };
 /* <SegmentTree::RangeMinIndex> */

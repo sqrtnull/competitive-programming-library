@@ -30,8 +30,7 @@ seg.build();
 
 std::cout << seg.fold(2,5) << '\n'; // 4
 
-seg[2]=seg[2]*100;
-seg.update(2);
+seg.update(2,seg[2]*100);
 
 std::cout << seg.fold(2,5) << '\n'; // 200
 ```

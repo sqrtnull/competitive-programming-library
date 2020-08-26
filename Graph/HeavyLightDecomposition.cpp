@@ -46,6 +46,21 @@ struct HLD
 		if(in[a]>in[b]) std::swap(a,b);
 		return a;
 	}
+	struct I { int l, r; I(int l, int r) : l(l),r(r) {} };
+	I get_subtree(int v) {
+		return I(in[v],out[v]);
+	}
+	std::vector<I> get_path(int a, int b) {
+		std::vector<I> intervals;
+		while(nxt[a]!=nxt[b]) {
+			if(in[a]>in[b]) std::swap(a,b);
+			intervals.emplace_back(in[nxt[b]],in[b]+1);
+			b=par[nxt[b]];
+		}
+		if(in[a]>in[b]) std::swap(a,b);
+		intervals.emplace_back(in[a],in[b]+1);
+		return intervals;
+	}
 };
 
 /* <HLD> */

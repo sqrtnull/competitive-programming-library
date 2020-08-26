@@ -7,8 +7,8 @@ struct SegmentTree
 	const int n;
 	std::vector<M> data;
 	SegmentTree(int n) : n(n),data(n<<1,M::I()) {}
-	M& operator[](int i) { return data[i+n]; } // pair with update/build
-	void update(int i) { for(i+=n;i>1;i>>=1) data[i>>1]=M::f(data[i],data[i^1]); }
+	M& operator[](int i) { return data[i+n]; } // get / pair with build
+	void update(int i, const M& a) { data[i+n]=a; for(i+=n;i>1;i>>=1) data[i>>1]=M::f(data[i],data[i^1]); }
 	void build() { for(int i=n-1;i>0;i--) data[i]=M::f(data[i<<1],data[i<<1|1]); }
 	M fold(int l, int r) const {
 		M L=M::I(),R=M::I();

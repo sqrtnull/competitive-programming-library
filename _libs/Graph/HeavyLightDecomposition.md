@@ -14,6 +14,12 @@ category: Graph
 2頂点間のパスに対応する区間取得 - $$O(\log{n})$$ で $$O(\log{n})$$個の独立な区間を得る \
 2頂点のLCA - $$O(\log{n})$$
 
+## Interface
+`HLD(n,u_g,root=0)` 大きさ$$n$$のグラフ`u_g`に対し`root`を根としたdfs木をHLDする \
+`get_subtree(i)` 頂点$$i$$の部分木に対応する区間を返す \
+`get_path(a,b)` 頂点$$a$$,$$b$$間のパスに対応する区間の集合を返す \
+`LCA(a,b)` 頂点$$a$$,$$b$$のLCAを返す
+
 {% assign path="Graph/HeavyLightDecomposition.cpp" %}
 ## [Code](https://raw.githubusercontent.com/sqrtnull/cp-library/master/{{path}})
 

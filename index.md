@@ -6,6 +6,7 @@ author: sqrtnull
 <!-- <a>
     <object height="32em" data="{{'assets/sqrtnull_logo.svg'|relative_url}}"></object>
 </a> -->
+ライブラリ置き場 \
 とりあえず日本語で書きます。$$\sqrt{0}$$
 
 {% assign lib = site.libs | group_by: 'category' %} {% for cat in lib %}

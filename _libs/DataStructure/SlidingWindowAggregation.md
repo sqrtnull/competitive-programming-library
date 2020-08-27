@@ -12,6 +12,11 @@ category: Data Structures
 末尾追加 - $$O(1)\ \text{amortized}$$ \
 先頭消去 - $$O(1)\ \text{amortized}$$ \
 全体fold - $$O(1)$$
+## Interface
+`SWAG<T>(func g)` 要素の型$$T$$と関数$$g:(T,T)\rightarrow T$$で初期化する \
+`push(T a)` 末尾に$$a$$を追加する \
+`pop()` 先頭から要素を一つ消去する \
+`fold_all()` 全体をfoldした値を返す
 
 {% assign path="DataStructure/SlidingWindowAggregation.cpp" %}
 ## [Code](https://raw.githubusercontent.com/sqrtnull/cp-library/master/{{path}})

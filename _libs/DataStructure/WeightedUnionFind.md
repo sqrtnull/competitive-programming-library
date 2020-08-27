@@ -14,6 +14,13 @@ category: Data Structures
 頂点が所属してる集合の大きさの取得 - $$O(\alpha(n))$$ \
 同集合内の2頂点のポテンシャルの差の取得 - $$O(\alpha(n))$$
 
+## Interface
+`WeightedUnionFind(int n)` 大きさ$$n$$の頂点集合で初期化する \
+`find(int i)` 頂点$$i$$の所属してる集合の名前を返す \
+`unite(int a, int b, long long w)` $$a$$-$$b$$にポテンシャル差$$w$$の辺を張る \
+`diff(int a, int b)` $$a$$-$$b$$のポテンシャル差を返す \
+`size[find(int i)]` 頂点$$i$$の所属してる集合の大きさを返す
+
 {% assign path="DataStructure/WeightedUnionFind.cpp" %}
 ## [Code](https://raw.githubusercontent.com/sqrtnull/cp-library/master/{{path}})
 

@@ -12,6 +12,11 @@ category: Data Structures
 辺の追加 - $$O(\alpha(n))$$ ($$\alpha はアッカーマン関数の逆関数$$) \
 頂点が所属してる集合の名前の取得 - $$O(\alpha(n))$$ \
 頂点が所属してる集合の大きさの取得 - $$O(\alpha(n))$$
+## Interface
+`UnionFind(int n)` 大きさ$$n$$の頂点集合で初期化する \
+`find(int i)` 頂点$$i$$の所属してる集合の名前を返す \
+`unite(int a, int b)` $$a$$-$$b$$に辺を張る \
+`size[find(int i)]` 頂点$$i$$の所属してる集合の大きさを返す
 
 {% assign path="DataStructure/UnionFind.cpp" %}
 ## [Code](https://raw.githubusercontent.com/sqrtnull/cp-library/master/{{path}})

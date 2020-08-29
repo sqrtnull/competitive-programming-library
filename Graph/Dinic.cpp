@@ -12,7 +12,7 @@ struct Dinic
 	std::vector<Edge> E;
 	std::vector<std::vector<int> > G,Gf;
 	Dinic(int n) : n(n),m(0),G(n) {}
-	void add_edge(int i, int j, int c) {
+	void add_edge(int i, int j, T c) {
 		E.emplace_back(i,j,c);
 		E.emplace_back(j,i,0);
 		G[i].emplace_back(m++);

@@ -13,8 +13,8 @@ struct SegmentTree
 	M fold(int l, int r) const {
 		M L=M::I(),R=M::I();
 		for(l+=n,r+=n;l<r;l>>=1,r>>=1) {
-			if(l&1) L=M::f(data[l++],L);
-			if(r&1) R=M::f(R,data[--r]);
+			if(l&1) L=M::f(L,data[l++]);
+			if(r&1) R=M::f(data[--r],R);
 		}
 		return M::f(L,R);
 	}

@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#define debug(args...) { std::string _s = #args; std::replace(_s.begin(), _s.end(), ',', ' '); std::stringstream _ss(_s); std::istream_iterator<std::string> _it(_ss); _err(std::cerr, _it, args); }
+#define debug(args...) { std::cerr << "line " << __LINE__ << ": "; std::string _s = #args; std::replace(_s.begin(), _s.end(), ',', ' '); std::stringstream _ss(_s); std::istream_iterator<std::string> _it(_ss); _err(std::cerr, _it, args); }
 
 template<typename T, typename S>
 std::ostream& operator<<(std::ostream&o,const std::pair<T,S>&v) {

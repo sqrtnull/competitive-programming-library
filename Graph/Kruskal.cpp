@@ -8,7 +8,7 @@ struct Edge
 	Edge(int a, int b, lnt c) : a(a), b(b), c(c) {}
 };
 
-std::vector<Edge> kruskal(int n,std::vector<Edge>&edges) {
+std::vector<Edge> kruskal(int n, std::vector<Edge>&edges) {
 	std::sort(edges.begin(), edges.end(),
 		[] (Edge a, Edge b) { return a.c < b.c; } );
 	UnionFind uf(n);

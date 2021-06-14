@@ -28,7 +28,7 @@
 #define print(i) std::cout << (i) << '\n'
 #define all(v) (v).begin(), (v).end()
 using lnt = long long;
-struct FIO{FIO(){std::cin.tie(0);std::ios_base::sync_with_stdio(0);std::cout<<std::setprecision(15);}}fIO;
+struct FIO{FIO(){std::cin.tie(0);std::ios_base::sync_with_stdio(0);std::cout<<std::fixed<<std::setprecision(15);}}fIO;
 template<typename T> using V = std::vector<T>;
 template<typename T> void fill(V<T>&v) { for(T&e:v) std::cin >> e; }
 /*-*/
